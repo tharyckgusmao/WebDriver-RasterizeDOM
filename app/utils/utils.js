@@ -1,27 +1,21 @@
-let easyimg = require('easyimage');
+let Jimp = require('jimp');
 
 module.exports ={
 
   cropImage: (size,location,source)=>{
-    easyimg.crop({
-        src: source,
-        dst: source,
-        cropwidth: size.width,
-        cropheight: size.height,
-        x: location.x,
-        y: location.y,
-        gravity: 'NorthWest'
-    },
-    function(err, stdout, stderr) {
-        if (err) throw err;
+    Jimp.read(source).then(function (lenna) {
+      lenna.crop( location.x, location.y, size.width, size.height )
+      .write(source);
+    }).catch(function (err) {
+      console.error(err);
     });
   },
 
   checkPrefix : (domEl)=>{
 
-      if(domEl.includes('#')){
-        return By.id(`${domEl.replace('#','')}`)
-      }
+    if(domEl.includes('#')){
+      return By.id(`${domEl.replace('#','')}`)
+    }
     return By.className(`${domEl.replace('.','')}`)
 
 
