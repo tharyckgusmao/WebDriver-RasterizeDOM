@@ -17,7 +17,7 @@ module.exports =  WebDriver = () =>{
 
 
 
-  let nameFile = `./images/screenshot-${new Date().toJSON().slice(0,10).replace(/-/g,'-')}.png`;
+  let nameFile = `./images/screenshot-${new Date().toJSON().slice(0,10)}.png`;
   let queryDom = `return {x:document.querySelector('${domEl}').offsetLeft, y:document.querySelector('${domEl}').offsetTop}`;
 
   let spinner = new Spinner(chalk.red.bold('Please Wait and enjoy a coffee ...'));
